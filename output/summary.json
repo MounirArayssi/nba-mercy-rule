@@ -1,0 +1,971 @@
+{
+  "experiment": "NBA Mercy Rule",
+  "publishable": false,
+  "warnings": [
+    "7 games failed (see errors.json)",
+    "168 box-score mismatches (see validation_issues.csv)"
+  ],
+  "seasons": [
+    "2015-16",
+    "2016-17",
+    "2017-18",
+    "2018-19",
+    "2019-20",
+    "2020-21",
+    "2021-22",
+    "2022-23",
+    "2023-24",
+    "2024-25",
+    "2025-26"
+  ],
+  "rules": {
+    "mercy": {
+      "name": "Tiered mercy rule",
+      "tiers": [
+        "extreme: lead >= 40 with <= 510s left in periods [4]",
+        "aggressive: lead >= 30 with <= 270s left in periods [4]",
+        "moderate: lead >= 25 with <= 210s left in periods [4]",
+        "conservative: lead >= 20 with <= 180s left in periods [4]"
+      ]
+    }
+  },
+  "cutoff": "possession",
+  "possessions": "tracked",
+  "games_processed": 13202,
+  "coverage": {
+    "2015-16": {
+      "expected_games": 1230,
+      "scheduled_games": 1230,
+      "processed_games": 1229
+    },
+    "2016-17": {
+      "expected_games": 1230,
+      "scheduled_games": 1230,
+      "processed_games": 1230
+    },
+    "2017-18": {
+      "expected_games": 1230,
+      "scheduled_games": 1230,
+      "processed_games": 1228
+    },
+    "2018-19": {
+      "expected_games": 1230,
+      "scheduled_games": 1230,
+      "processed_games": 1230
+    },
+    "2019-20": {
+      "expected_games": 1059,
+      "scheduled_games": 1059,
+      "processed_games": 1059
+    },
+    "2020-21": {
+      "expected_games": 1080,
+      "scheduled_games": 1080,
+      "processed_games": 1080
+    },
+    "2021-22": {
+      "expected_games": 1230,
+      "scheduled_games": 1230,
+      "processed_games": 1228
+    },
+    "2022-23": {
+      "expected_games": 1230,
+      "scheduled_games": 1230,
+      "processed_games": 1230
+    },
+    "2023-24": {
+      "expected_games": 1230,
+      "scheduled_games": 1230,
+      "processed_games": 1229
+    },
+    "2024-25": {
+      "expected_games": 1230,
+      "scheduled_games": 1230,
+      "processed_games": 1230
+    },
+    "2025-26": {
+      "expected_games": 1230,
+      "scheduled_games": 1230,
+      "processed_games": 1229
+    }
+  },
+  "errors": [
+    {
+      "season": "2015-16",
+      "game_id": "0021500916",
+      "error": "home score mismatch: pbp=114, box=117"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700025",
+      "error": "home score mismatch: pbp=103, box=120"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700211",
+      "error": "home score mismatch: pbp=85, box=116"
+    },
+    {
+      "season": "2021-22",
+      "game_id": "0022100028",
+      "error": "home score mismatch: pbp=100, box=102"
+    },
+    {
+      "season": "2021-22",
+      "game_id": "0022100298",
+      "error": "away score mismatch: pbp=118, box=120"
+    },
+    {
+      "season": "2023-24",
+      "game_id": "0022301202",
+      "error": "home score mismatch: pbp=119, box=122"
+    },
+    {
+      "season": "2025-26",
+      "game_id": "0022500232",
+      "error": "home score mismatch: pbp=60, box=112"
+    }
+  ],
+  "validation_issues": [
+    {
+      "season": "2015-16",
+      "game_id": "0021500045",
+      "issue": "Dallas Mavericks OREB: pbp=7, box=8"
+    },
+    {
+      "season": "2015-16",
+      "game_id": "0021500061",
+      "issue": "San Antonio Spurs OREB: pbp=8, box=9"
+    },
+    {
+      "season": "2015-16",
+      "game_id": "0021500238",
+      "issue": "New Orleans Pelicans OREB: pbp=14, box=15"
+    },
+    {
+      "season": "2015-16",
+      "game_id": "0021500276",
+      "issue": "LA Clippers OREB: pbp=9, box=10"
+    },
+    {
+      "season": "2015-16",
+      "game_id": "0021500385",
+      "issue": "Los Angeles Lakers OREB: pbp=12, box=13"
+    },
+    {
+      "season": "2015-16",
+      "game_id": "0021500391",
+      "issue": "Detroit Pistons FTM: pbp=28, box=27"
+    },
+    {
+      "season": "2015-16",
+      "game_id": "0021500433",
+      "issue": "Denver Nuggets OREB: pbp=12, box=13"
+    },
+    {
+      "season": "2015-16",
+      "game_id": "0021500524",
+      "issue": "Golden State Warriors OREB: pbp=9, box=10"
+    },
+    {
+      "season": "2015-16",
+      "game_id": "0021500528",
+      "issue": "Detroit Pistons OREB: pbp=10, box=11"
+    },
+    {
+      "season": "2015-16",
+      "game_id": "0021500565",
+      "issue": "Utah Jazz OREB: pbp=5, box=6"
+    },
+    {
+      "season": "2015-16",
+      "game_id": "0021500594",
+      "issue": "Oklahoma City Thunder FTM: pbp=15, box=14"
+    },
+    {
+      "season": "2015-16",
+      "game_id": "0021500627",
+      "issue": "Oklahoma City Thunder FTM: pbp=23, box=22"
+    },
+    {
+      "season": "2015-16",
+      "game_id": "0021500653",
+      "issue": "San Antonio Spurs OREB: pbp=6, box=7"
+    },
+    {
+      "season": "2015-16",
+      "game_id": "0021500657",
+      "issue": "Milwaukee Bucks OREB: pbp=5, box=6"
+    },
+    {
+      "season": "2015-16",
+      "game_id": "0021500689",
+      "issue": "Houston Rockets OREB: pbp=11, box=12"
+    },
+    {
+      "season": "2015-16",
+      "game_id": "0021500701",
+      "issue": "Oklahoma City Thunder OREB: pbp=10, box=11"
+    },
+    {
+      "season": "2015-16",
+      "game_id": "0021500761",
+      "issue": "Washington Wizards FTM: pbp=20, box=19"
+    },
+    {
+      "season": "2015-16",
+      "game_id": "0021500765",
+      "issue": "Memphis Grizzlies FTM: pbp=14, box=13"
+    },
+    {
+      "season": "2015-16",
+      "game_id": "0021500948",
+      "issue": "Portland Trail Blazers OREB: pbp=12, box=13"
+    },
+    {
+      "season": "2015-16",
+      "game_id": "0021500965",
+      "issue": "Houston Rockets FTM: pbp=18, box=17"
+    },
+    {
+      "season": "2015-16",
+      "game_id": "0021501137",
+      "issue": "Washington Wizards OREB: pbp=8, box=9"
+    },
+    {
+      "season": "2015-16",
+      "game_id": "0021501180",
+      "issue": "New York Knicks FTM: pbp=20, box=19"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600026",
+      "issue": "Atlanta Hawks FTM: pbp=16, box=15"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600026",
+      "issue": "Atlanta Hawks OREB: pbp=5, box=6"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600096",
+      "issue": "Chicago Bulls OREB: pbp=14, box=15"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600103",
+      "issue": "Phoenix Suns OREB: pbp=14, box=15"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600128",
+      "issue": "Sacramento Kings OREB: pbp=12, box=13"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600129",
+      "issue": "New Orleans Pelicans OREB: pbp=11, box=12"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600152",
+      "issue": "Brooklyn Nets OREB: pbp=8, box=9"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600158",
+      "issue": "Washington Wizards FTM: pbp=19, box=18"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600198",
+      "issue": "Chicago Bulls OREB: pbp=15, box=16"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600219",
+      "issue": "Toronto Raptors OREB: pbp=14, box=15"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600275",
+      "issue": "Portland Trail Blazers OREB: pbp=13, box=14"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600330",
+      "issue": "Golden State Warriors OREB: pbp=10, box=12"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600344",
+      "issue": "Phoenix Suns FTM: pbp=17, box=16"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600358",
+      "issue": "Golden State Warriors OREB: pbp=5, box=6"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600417",
+      "issue": "Denver Nuggets OREB: pbp=8, box=7"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600478",
+      "issue": "New York Knicks FTM: pbp=22, box=21"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600487",
+      "issue": "Oklahoma City Thunder FTM: pbp=27, box=26"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600512",
+      "issue": "Toronto Raptors OREB: pbp=4, box=5"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600528",
+      "issue": "Los Angeles Lakers FTM: pbp=16, box=15"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600549",
+      "issue": "Los Angeles Lakers OREB: pbp=17, box=18"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600612",
+      "issue": "Detroit Pistons OREB: pbp=9, box=10"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600626",
+      "issue": "Los Angeles Lakers OREB: pbp=19, box=20"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600626",
+      "issue": "Denver Nuggets OREB: pbp=12, box=13"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600749",
+      "issue": "Chicago Bulls OREB: pbp=13, box=14"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600770",
+      "issue": "Oklahoma City Thunder FTM: pbp=16, box=15"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600874",
+      "issue": "Los Angeles Lakers OREB: pbp=12, box=13"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021600874",
+      "issue": "San Antonio Spurs OREB: pbp=12, box=13"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021601011",
+      "issue": "Portland Trail Blazers OREB: pbp=9, box=8"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021601199",
+      "issue": "Phoenix Suns OREB: pbp=7, box=8"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021601215",
+      "issue": "Los Angeles Lakers FTM: pbp=17, box=16"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021601219",
+      "issue": "Boston Celtics FGA: pbp=91, box=90"
+    },
+    {
+      "season": "2016-17",
+      "game_id": "0021601219",
+      "issue": "Boston Celtics OREB: pbp=11, box=10"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700009",
+      "issue": "Atlanta Hawks OREB: pbp=13, box=14"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700010",
+      "issue": "Denver Nuggets OREB: pbp=6, box=7"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700015",
+      "issue": "Oklahoma City Thunder OREB: pbp=12, box=13"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700016",
+      "issue": "Los Angeles Lakers OREB: pbp=11, box=12"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700017",
+      "issue": "Charlotte Hornets OREB: pbp=11, box=12"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700021",
+      "issue": "Cleveland Cavaliers OREB: pbp=7, box=9"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700022",
+      "issue": "Brooklyn Nets OREB: pbp=14, box=15"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700023",
+      "issue": "Minnesota Timberwolves OREB: pbp=9, box=10"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700029",
+      "issue": "Miami Heat OREB: pbp=5, box=6"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700029",
+      "issue": "Indiana Pacers OREB: pbp=11, box=13"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700030",
+      "issue": "Detroit Pistons OREB: pbp=14, box=15"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700032",
+      "issue": "Houston Rockets OREB: pbp=7, box=8"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700035",
+      "issue": "Denver Nuggets OREB: pbp=17, box=18"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700035",
+      "issue": "Sacramento Kings OREB: pbp=11, box=12"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700039",
+      "issue": "Oklahoma City Thunder OREB: pbp=8, box=9"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700039",
+      "issue": "Minnesota Timberwolves OREB: pbp=9, box=10"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700040",
+      "issue": "Los Angeles Lakers OREB: pbp=10, box=9"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700044",
+      "issue": "Charlotte Hornets OREB: pbp=9, box=10"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700052",
+      "issue": "Minnesota Timberwolves OREB: pbp=8, box=9"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700060",
+      "issue": "Oklahoma City Thunder OREB: pbp=15, box=16"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700060",
+      "issue": "Indiana Pacers OREB: pbp=12, box=14"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700061",
+      "issue": "Memphis Grizzlies OREB: pbp=5, box=6"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700063",
+      "issue": "Toronto Raptors OREB: pbp=16, box=17"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700065",
+      "issue": "Chicago Bulls OREB: pbp=17, box=18"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700071",
+      "issue": "San Antonio Spurs OREB: pbp=16, box=17"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700075",
+      "issue": "Golden State Warriors OREB: pbp=14, box=15"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700079",
+      "issue": "Chicago Bulls OREB: pbp=11, box=12"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700079",
+      "issue": "Oklahoma City Thunder OREB: pbp=9, box=11"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700080",
+      "issue": "Houston Rockets OREB: pbp=6, box=8"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700081",
+      "issue": "Philadelphia 76ers OREB: pbp=7, box=11"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700089",
+      "issue": "Sacramento Kings OREB: pbp=10, box=11"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700091",
+      "issue": "Detroit Pistons OREB: pbp=16, box=17"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700092",
+      "issue": "Boston Celtics OREB: pbp=13, box=15"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700092",
+      "issue": "San Antonio Spurs OREB: pbp=10, box=12"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700093",
+      "issue": "Miami Heat OREB: pbp=14, box=15"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700094",
+      "issue": "New York Knicks OREB: pbp=10, box=11"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700097",
+      "issue": "Orlando Magic OREB: pbp=5, box=6"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700104",
+      "issue": "Detroit Pistons OREB: pbp=9, box=10"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700107",
+      "issue": "Atlanta Hawks OREB: pbp=11, box=12"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700109",
+      "issue": "Boston Celtics OREB: pbp=15, box=16"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700111",
+      "issue": "Houston Rockets OREB: pbp=8, box=9"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700113",
+      "issue": "New Orleans Pelicans OREB: pbp=8, box=9"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700114",
+      "issue": "Toronto Raptors OREB: pbp=8, box=9"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700118",
+      "issue": "Portland Trail Blazers OREB: pbp=9, box=10"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700120",
+      "issue": "Chicago Bulls OREB: pbp=8, box=9"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700127",
+      "issue": "Denver Nuggets OREB: pbp=12, box=13"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700132",
+      "issue": "Sacramento Kings OREB: pbp=2, box=3"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700137",
+      "issue": "LA Clippers OREB: pbp=17, box=18"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700141",
+      "issue": "Phoenix Suns OREB: pbp=9, box=11"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700143",
+      "issue": "Charlotte Hornets OREB: pbp=9, box=10"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700146",
+      "issue": "Atlanta Hawks OREB: pbp=4, box=5"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700146",
+      "issue": "Boston Celtics OREB: pbp=6, box=7"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700152",
+      "issue": "New York Knicks OREB: pbp=5, box=6"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700152",
+      "issue": "Charlotte Hornets OREB: pbp=16, box=17"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700155",
+      "issue": "Brooklyn Nets OREB: pbp=7, box=8"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700156",
+      "issue": "Utah Jazz OREB: pbp=12, box=14"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700159",
+      "issue": "Detroit Pistons OREB: pbp=7, box=8"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700159",
+      "issue": "Indiana Pacers OREB: pbp=6, box=7"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700160",
+      "issue": "New York Knicks OREB: pbp=11, box=12"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700162",
+      "issue": "Phoenix Suns OREB: pbp=5, box=6"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700162",
+      "issue": "Miami Heat OREB: pbp=10, box=11"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700164",
+      "issue": "Washington Wizards OREB: pbp=6, box=7"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700167",
+      "issue": "Sacramento Kings OREB: pbp=7, box=8"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700169",
+      "issue": "Atlanta Hawks OREB: pbp=10, box=11"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700172",
+      "issue": "Oklahoma City Thunder OREB: pbp=9, box=11"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700172",
+      "issue": "LA Clippers OREB: pbp=14, box=16"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700174",
+      "issue": "Phoenix Suns OREB: pbp=11, box=12"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700174",
+      "issue": "Orlando Magic OREB: pbp=6, box=7"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700175",
+      "issue": "Miami Heat OREB: pbp=6, box=7"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700177",
+      "issue": "Atlanta Hawks OREB: pbp=9, box=10"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700181",
+      "issue": "Cleveland Cavaliers OREB: pbp=9, box=10"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700186",
+      "issue": "Phoenix Suns OREB: pbp=6, box=7"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700189",
+      "issue": "Detroit Pistons OREB: pbp=10, box=11"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700191",
+      "issue": "Dallas Mavericks OREB: pbp=10, box=11"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700193",
+      "issue": "New York Knicks OREB: pbp=12, box=13"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700195",
+      "issue": "New Orleans Pelicans OREB: pbp=6, box=7"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700196",
+      "issue": "Los Angeles Lakers OREB: pbp=8, box=9"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700198",
+      "issue": "Portland Trail Blazers OREB: pbp=6, box=8"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700198",
+      "issue": "Denver Nuggets OREB: pbp=11, box=12"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700199",
+      "issue": "Orlando Magic OREB: pbp=5, box=4"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700218",
+      "issue": "Washington Wizards OREB: pbp=6, box=7"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700226",
+      "issue": "Denver Nuggets OREB: pbp=12, box=13"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700243",
+      "issue": "Orlando Magic OREB: pbp=10, box=11"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700248",
+      "issue": "Oklahoma City Thunder OREB: pbp=8, box=9"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700252",
+      "issue": "Chicago Bulls OREB: pbp=16, box=15"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700255",
+      "issue": "Philadelphia 76ers OREB: pbp=10, box=11"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700259",
+      "issue": "Denver Nuggets OREB: pbp=14, box=15"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700269",
+      "issue": "Orlando Magic OREB: pbp=14, box=16"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700286",
+      "issue": "Sacramento Kings OREB: pbp=7, box=8"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700287",
+      "issue": "Chicago Bulls OREB: pbp=6, box=7"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700299",
+      "issue": "Chicago Bulls OREB: pbp=8, box=9"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700303",
+      "issue": "Phoenix Suns OREB: pbp=7, box=8"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700315",
+      "issue": "Denver Nuggets OREB: pbp=10, box=11"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700335",
+      "issue": "Golden State Warriors OREB: pbp=6, box=7"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700359",
+      "issue": "Detroit Pistons OREB: pbp=16, box=17"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700362",
+      "issue": "Minnesota Timberwolves OREB: pbp=7, box=8"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700386",
+      "issue": "Detroit Pistons OREB: pbp=10, box=11"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700413",
+      "issue": "Detroit Pistons OREB: pbp=13, box=14"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700453",
+      "issue": "Milwaukee Bucks OREB: pbp=7, box=8"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700526",
+      "issue": "Oklahoma City Thunder OREB: pbp=9, box=10"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700633",
+      "issue": "Denver Nuggets OREB: pbp=10, box=11"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021700724",
+      "issue": "Detroit Pistons OREB: pbp=12, box=13"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021701075",
+      "issue": "New Orleans Pelicans OREB: pbp=7, box=8"
+    },
+    {
+      "season": "2017-18",
+      "game_id": "0021701142",
+      "issue": "Sacramento Kings OREB: pbp=10, box=11"
+    },
+    {
+      "season": "2018-19",
+      "game_id": "0021800724",
+      "issue": "Houston Rockets OREB: pbp=11, box=12"
+    },
+    {
+      "season": "2020-21",
+      "game_id": "0022000703",
+      "issue": "Charlotte Hornets OREB: pbp=15, box=16"
+    },
+    {
+      "season": "2021-22",
+      "game_id": "0022100596",
+      "issue": "Miami Heat OREB: pbp=10, box=11"
+    },
+    {
+      "season": "2021-22",
+      "game_id": "0022100756",
+      "issue": "Denver Nuggets OREB: pbp=5, box=6"
+    },
+    {
+      "season": "2022-23",
+      "game_id": "0022201118",
+      "issue": "Brooklyn Nets OREB: pbp=14, box=15"
+    },
+    {
+      "season": "2023-24",
+      "game_id": "0022301125",
+      "issue": "Minnesota Timberwolves OREB: pbp=7, box=8"
+    },
+    {
+      "season": "2025-26",
+      "game_id": "0022500229",
+      "issue": "Oklahoma City Thunder OREB: pbp=12, box=13"
+    },
+    {
+      "season": "2025-26",
+      "game_id": "0022500326",
+      "issue": "Orlando Magic OREB: pbp=9, box=10"
+    },
+    {
+      "season": "2025-26",
+      "game_id": "0022500421",
+      "issue": "Sacramento Kings OREB: pbp=18, box=19"
+    },
+    {
+      "season": "2025-26",
+      "game_id": "0022501010",
+      "issue": "Los Angeles Lakers OREB: pbp=12, box=13"
+    }
+  ]
+}

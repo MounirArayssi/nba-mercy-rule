@@ -1,0 +1,37 @@
+[
+  {
+    "season": "2015-16",
+    "game_id": "0021500916",
+    "error": "home score mismatch: pbp=114, box=117"
+  },
+  {
+    "season": "2017-18",
+    "game_id": "0021700025",
+    "error": "home score mismatch: pbp=103, box=120"
+  },
+  {
+    "season": "2017-18",
+    "game_id": "0021700211",
+    "error": "home score mismatch: pbp=85, box=116"
+  },
+  {
+    "season": "2021-22",
+    "game_id": "0022100028",
+    "error": "home score mismatch: pbp=100, box=102"
+  },
+  {
+    "season": "2021-22",
+    "game_id": "0022100298",
+    "error": "away score mismatch: pbp=118, box=120"
+  },
+  {
+    "season": "2023-24",
+    "game_id": "0022301202",
+    "error": "home score mismatch: pbp=119, box=122"
+  },
+  {
+    "season": "2025-26",
+    "game_id": "0022500232",
+    "error": "home score mismatch: pbp=60, box=112"
+  }
+]

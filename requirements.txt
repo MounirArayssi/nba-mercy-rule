@@ -1,0 +1,5 @@
+nba_api>=1.10,<2
+pandas>=2.2,<3
+numpy>=1.26,<3
+PyYAML>=6,<7
+matplotlib>=3.8,<4

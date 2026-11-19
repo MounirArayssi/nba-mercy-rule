@@ -1,0 +1,82 @@
+# NBA Mercy Rule experiment settings.
+# Every option is explained in README.md.
+
+experiment:
+  name: "NBA Mercy Rule"
+  seasons:
+    - "2015-16"
+    - "2016-17"
+    - "2017-18"
+    - "2018-19"
+    - "2019-20"
+    - "2020-21"
+    - "2021-22"
+    - "2022-23"
+    - "2023-24"
+    - "2024-25"
+    - "2025-26"
+  season_type: "Regular Season"   # or "Playoffs"
+
+# A mercy rule is a list of tiers. The game ends the FIRST moment any
+# tier is satisfied: a team leads by at least `min_lead` with
+# `max_seconds_remaining` or fewer left in one of `periods` (default [4]).
+# Once a game ends it is over, so the other tiers no longer matter.
+#
+# Example: up 40 with 7:00 left ends the game on the "extreme" tier,
+# even if the lead later shrinks to 27 with 3:00 left.
+#
+# If several tiers are satisfied at the same moment, the first one listed
+# is reported as the trigger, so list the most extreme tier first.
+#
+# To compare alternatives, add more rules. Each one is a separate
+# scenario with its own output folder, named after its `id`. A rule can
+# also have a single condition instead of tiers:
+#   - id: flat_25
+#     name: "25 points, 3:30"
+#     min_lead: 25
+#     max_seconds_remaining: 210
+rules:
+  - id: mercy
+    name: "Tiered mercy rule"
+    tiers:
+      - name: extreme
+        min_lead: 40
+        max_seconds_remaining: 510   # 8:30
+      - name: aggressive
+        min_lead: 30
+        max_seconds_remaining: 270   # 4:30
+      - name: moderate
+        min_lead: 25
+        max_seconds_remaining: 210   # 3:30
+      - name: conservative
+        min_lead: 20
+        max_seconds_remaining: 180   # 3:00
+
+analysis:
+  # Where the game stops once a rule triggers:
+  #   possession: finish the possession in progress (recommended)
+  #   event:      stop exactly on the triggering play-by-play event
+  cutoff: "possession"
+
+  # How possessions are counted for ORtg/DRtg:
+  #   tracked:  counted from play-by-play (src/possessions.py),
+  #             within about 1 of NBA.com's official counts
+  #   estimate: box-score formula FGA - OREB + TOV + factor * FTA
+  possessions: "tracked"
+  possession_factor: 0.44   # only used by "estimate" and true shooting
+
+  # Optional leaderboard: mercy-adjusted teams ranked against the
+  # official (unadjusted) net ratings of every team since this season.
+  # Also available with the --historical flag.
+  historical_comparison: false
+  historical_start: "1996-97"
+
+data:
+  cache_dir: "data/cache"
+  request_delay: 0.8   # seconds between NBA API calls
+  timeout: 35
+  retries: 3
+
+output:
+  directory: "output"
+  charts: true

@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Downloaded NBA data (re-created by main.py; several GB)
+data/cache/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+output/all_team_game_stats.csv
+output/all_games.csv
+output/mercy/
+output/validation_issues.csv
