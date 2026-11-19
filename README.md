@@ -28,7 +28,7 @@ The rule (first condition met ends the game):
   Thunder go from +12.7 to +13.9 net rating; the 2024-25 Wizards from
   −12.2 to −13.4.
 
-Article: [link]
+Article: https://medium.com/@mounirarayssi/what-if-the-nba-had-a-mercy-rule-7f4c70c32959?sharedUserId=mounirarayssi 
 
 ![The best teams of the decade](output/article_charts/09_top_net_ratings.png)
 
@@ -199,4 +199,4 @@ python check_possessions.py --season 2018-19 --games 30
 7. **API access varies.** stats.nba.com sometimes blocks or times out
    requests. Keep the request delay and the cache.
 
-   
+

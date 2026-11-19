@@ -290,11 +290,21 @@ def chart_top_units(ratings):
         lambda x: 100 * x.actual_pts.sum() / x.actual_poss.sum(), include_groups=False)
     lg_m = r.groupby("season").apply(
         lambda x: 100 * x.mercy_pts.sum() / x.mercy_poss.sum(), include_groups=False)
-    r["off_a"] = r.actual_ortg - r.season.map(lg_a)
-    r["off_m"] = r.mercy_ortg - r.season.map(lg_m)
+    # Offense and defense on NBA.com's official base, like the tables (10/11):
+    # after = official rating + our play-by-play change, against a league
+    # average shifted by the same play-by-play change.
+    o = official_ratings()
+    r = r.merge(o[["season", "TEAM_NAME", "OFF_RATING", "DEF_RATING",
+                   "LG_OFF_RATING", "LG_DEF_RATING"]],
+                left_on=["season", "team"], right_on=["season", "TEAM_NAME"], how="left")
+    if r.OFF_RATING.isna().any():
+        raise ValueError("Team names did not match the official ratings")
+    shift = r.season.map(lg_m) - r.season.map(lg_a)
+    r["off_a"] = r.OFF_RATING - r.LG_OFF_RATING
+    r["off_m"] = (r.OFF_RATING + r.mercy_ortg - r.actual_ortg) - (r.LG_OFF_RATING + shift)
     # Defense flipped so that "better than average" is positive / to the right.
-    r["def_a"] = r.season.map(lg_a) - r.actual_drtg
-    r["def_m"] = r.season.map(lg_m) - r.mercy_drtg
+    r["def_a"] = r.LG_DEF_RATING - r.DEF_RATING
+    r["def_m"] = (r.LG_DEF_RATING + shift) - (r.DEF_RATING + r.mercy_drtg - r.actual_drtg)
 
     # Net rating on NBA.com's official base (it is comparable across seasons),
     # so the chart matches nba.com/stats and team_ratings_2015-2026.csv.
@@ -315,8 +325,7 @@ def chart_top_units(ratings):
     ):
         r["rank_before"] = r[f"{side}_a"].rank(ascending=False, method="min").astype(int)
         r["rank_after"] = r[f"{side}_m"].rank(ascending=False, method="min").astype(int)
-        dumbbell(r.nsmallest(7, "rank_after"), f"{side}_a", f"{side}_m",
-                 title, xlabel, name)
+        rank_chart(r, f"{side}_a", f"{side}_m", title, xlabel, name)
         top = r[(r.rank_before <= 7) | (r.rank_after <= 7)]
         panels.append((("Offense" if side == "off" else "Defense"),
                        top[["season", "team", "rank_before", "rank_after"]].copy()))
@@ -325,24 +334,38 @@ def chart_top_units(ratings):
 
 def chart_best_net(r, n=7, worst=False):
     """Best (or worst) net ratings: each team's change plus its rank before -> after."""
-    r = r.copy()
-    r["rank_before"] = r.net_a.rank(ascending=worst, method="min").astype(int)
-    r["rank_after"] = r.net_m.rank(ascending=worst, method="min").astype(int)
-    data = r[(r.rank_before <= n) | (r.rank_after <= n)]
-    data = data.sort_values(["rank_after", "net_m"], ascending=[True, worst]).iloc[::-1]
+    rank_chart(r, "net_a", "net_m",
+               f"The {'worst' if worst else 'best'} teams of the decade",
+               "Net rating (point differential per 100 possessions)",
+               "14_worst_net_ratings.png" if worst else "09_top_net_ratings.png",
+               n=n, worst=worst)
 
-    title = f"The {'worst' if worst else 'best'} teams of the decade"
-    fig, ax = frame(title, figsize=(11, 6.6), left=0.22)
+
+def rank_chart(r, col_a, col_m, title, xlabel, name, n=7, worst=False, ascending=None):
+    """Arrows from actual to no-garbage-time value, plus a rank before -> after column.
+
+    worst: the list ranks bad teams (moving up the list is bad, colored orange).
+    ascending: rank 1 is the lowest value (defaults to `worst`, as for net rating).
+    """
+    if ascending is None:
+        ascending = worst
+    r = r[["season", "team", col_a, col_m]].rename(columns={col_a: "net_a", col_m: "net_m"})
+    r["rank_before"] = r.net_a.rank(ascending=ascending, method="min").astype(int)
+    r["rank_after"] = r.net_m.rank(ascending=ascending, method="min").astype(int)
+    data = r[(r.rank_before <= n) | (r.rank_after <= n)]
+    data = data.sort_values(["rank_after", "net_m"], ascending=[True, ascending]).iloc[::-1]
+
+    fig, ax = frame(title, figsize=(11, 6.6 + 0.45 * max(0, len(data) - 8)), left=0.22)
     fig.subplots_adjust(right=0.80, bottom=0.15, top=0.78)
     legend_line(fig, [("●", BEFORE, False), (" Actual    ", INK_2, False),
                       ("●", BLUE, False), (" Garbage time removed", INK_2, False)])
     y = list(range(len(data)))
     lo, hi = min(data.net_a.min(), data.net_m.min()), max(data.net_a.max(), data.net_m.max())
-    ax.set_xlim(lo - (0.75 if worst else 0.35), hi + (0.35 if worst else 0.55))
+    ax.set_xlim(lo - (0.75 if ascending else 0.35), hi + (0.35 if ascending else 0.55))
     ax.set_ylim(-0.6, len(data) - 0.4)
 
     change = data.net_m - data.net_a
-    biggest = change.idxmin() if worst else change.idxmax()
+    biggest = change.idxmin() if ascending else change.idxmax()
     for i, row in enumerate(data.itertuples()):
         if row.Index == biggest:
             ax.axhspan(i - 0.42, i + 0.42, color="#fdeee7" if worst else "#eef4fc",
@@ -352,13 +375,15 @@ def chart_best_net(r, n=7, worst=False):
                     arrowprops=dict(arrowstyle="-|>,head_width=0.25,head_length=0.5",
                                     color=BLUE_LIGHT, linewidth=3, shrinkA=4, shrinkB=0),
                     zorder=1)
-        text = f"{row.net_m - row.net_a:+.1f}".replace("-", "−")
-        if worst:
+        diff = round(row.net_m - row.net_a, 1)
+        text = "no change" if diff == 0 else f"{diff:+.1f}".replace("-", "−")
+        ink = MUTED if diff == 0 else BLUE
+        if ascending:
             ax.text(min(row.net_a, row.net_m) - 0.12, i, text, ha="right",
-                    va="center", fontsize=12, fontname=FONT_BOLD, color=BLUE)
+                    va="center", fontsize=12, fontname=FONT_BOLD, color=ink)
         else:
             ax.text(max(row.net_a, row.net_m) + 0.12, i, text,
-                    va="center", fontsize=12, fontname=FONT_BOLD, color=BLUE)
+                    va="center", fontsize=12, fontname=FONT_BOLD, color=ink)
         # Rank column, outside the plot on the right.
         moved = row.rank_after - row.rank_before
         # Up the list is good on the best chart, bad on the worst chart.
@@ -384,10 +409,10 @@ def chart_best_net(r, n=7, worst=False):
     ax.set_yticks(y, [label(t) for t in data.itertuples()], color=INK, fontsize=12.5)
     ax.xaxis.set_major_locator(matplotlib.ticker.MultipleLocator(1))
     ax.xaxis.set_major_formatter(lambda v, _: f"{v:+.0f}".replace("-", "−"))
-    ax.set_xlabel("Net rating (point differential per 100 possessions)", labelpad=8)
+    ax.set_xlabel(xlabel, labelpad=8)
     ax.spines["bottom"].set_visible(False)
     grid(ax, "x")
-    save(fig, "14_worst_net_ratings.png" if worst else "09_top_net_ratings.png")
+    save(fig, name)
 
 
 def chart_three_ratings(r, n=5):
@@ -539,11 +564,9 @@ def worst_defenses(ratings, n=10):
         r.LG_DEF_RATING + r.season.map(lg_m) - r.season.map(lg_a))
     r["rank_before"] = r.bad_a.rank(ascending=False, method="min").astype(int)
     r["rank_after"] = r.bad_m.rank(ascending=False, method="min").astype(int)
-    top = r[r.rank_before <= n].sort_values("rank_before")
-    dumbbell(top.assign(rank_after=top.rank_before), "bad_a", "bad_m",
-             "The worst defenses of the decade",
-             "Points allowed per 100 possessions above league average",
-             "13_worst_defenses.png")
+    rank_chart(r, "bad_a", "bad_m", "The worst defenses of the decade",
+               "Points allowed per 100 possessions above league average",
+               "13_worst_defenses.png", n=n, worst=True, ascending=False)
 
 
 def chart_rank_shuffle(panels):
